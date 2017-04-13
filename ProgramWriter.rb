@@ -1,4 +1,5 @@
 file = File.open('program.rb', 'w')
+file.write("#generated file")
 File.readlines("instructions.txt").each do |line|
    puts "#{line}"
    if line.include? "integer"
