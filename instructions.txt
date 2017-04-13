@@ -1,0 +1,3 @@
+an integer called test with value 5
+a method called testMethod
+	*print test
