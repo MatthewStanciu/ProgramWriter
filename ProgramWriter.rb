@@ -1,10 +1,8 @@
-line_number = 0
-file = File.open('program.rb', 'w')
+file = File.open('program.rb', 'w+')
 file.write("#generated file")
 File.readlines("instructions.txt").each do |line|
    split = line.split(' ')
    puts "#{line}"
-   line_number+=1
 
    if line.include? "integer"
       var_index = split.index("called") + 1
@@ -14,26 +12,24 @@ File.readlines("instructions.txt").each do |line|
 
       file.write("\n#{var_name} = #{value}")
    end
-   method_number = 0
    if line.include? "method"
-      method_number = line_number
       method_index = split.index("called") + 1
       method_name = split.at(method_index)
       
-            
       file.write("\ndef #{method_name}")
       file.write("\n\nend")
    end
-   inmethod_number = 0
    if line.start_with? "*" #idea: loop through method start and end
-      inmethod_number = line_number
-      if inmethod_number - 1 == method_number
-         if line.include? "print"
-            print_message = ""
-            print_index = split.index("print")
-            print_message = "#{print_message}" + "#{split}"   
-            file.write("\n#{line}") #temporary
-            file.write("\n\nend")
+      puts "works 1"
+      File.readlines("program.rb").each do |p_line|
+         puts "works 2"
+         file.write("#{p_line}")
+         if line.start_with? "* print"
+            puts "works 3"
+            if p_line.include? "def"
+               puts "works 4"
+               file.write("#{line}")
+            end
          end
       end
    end
