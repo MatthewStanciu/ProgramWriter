@@ -19,9 +19,9 @@ File.readlines("instructions.txt").each do |line|
       file.write("\ndef #{method_name}")
       file.write("\n\nend")
    end
-   if line.start_with? "*" #idea: loop through method start and end
+   if line.start_with? "-"
       puts "works 1"
-      File.readlines("program.rb").each do |p_line|
+      File.readlines("program.rb").each do |p_line| #stops working after here
          puts "works 2"
          file.write("#{p_line}")
          if line.start_with? "* print"
